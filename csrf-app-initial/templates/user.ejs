@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang=en>
+
+<head>
+  <meta charset=utf-8>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+  <title>Онлайн кинотеатр</title>
+  <style>
+    body {
+      padding-top: 0px;
+      background-color: rgb(36, 35, 35);
+      color: #eee;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+    .container {
+      padding: 0 50px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: rgb(5, 38, 91);
+      color: #eee;
+      padding: 15px 40px;
+    }
+
+    a,
+    button {
+      border: none;
+      padding: 5px 10px;
+      border-radius: 15px;
+      background-color: #eee;
+      color: rgb(5, 38, 91);
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    a:hover,
+    button:hover {
+      background-color: #b8b8b8;
+    }
+
+    fieldset {
+      border: none;
+    }
+
+    section {
+      padding: 30px 50px;
+    }
+
+    .input {
+      border-radius: 20px;
+      padding: 5px 10px;
+      border: none;
+      margin-right: 10px;
+      margin-top: 5px;
+      max-width: 100%;
+    }
+
+    fieldset {
+      max-width: 250px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    button {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Онлайн кинотеатр</h1>
+
+    <div style="text-align: right">
+      <a href="/">Главная</a>
+    </div>
+  </header>
+  <section>
+
+    <form method="post" action="user">
+      <fieldset>
+        <label for="username">Ваше имя:</label>
+        <input class="input" name="username" type="text" value="<%= username %>" class="thin">
+      </fieldset>
+
+      <fieldset>
+        <label for="email">Ваш email:</label>
+        <input class="input" name="email" type="email" value="<%= email %>" class="thin">
+      </fieldset>
+
+      <fieldset>
+        <button type="submit">Сохранить</button>
+      </fieldset>
+    </form>
+  </section>
+
+</body>
+
+</html>

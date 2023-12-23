@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang=en>
+
+<head>
+  <meta charset=utf-8>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+  <title>Онлайн кинотеатр</title>
+  <style>
+    body {
+      padding-top: 0px;
+      background-color: rgb(36, 35, 35);
+      color: #eee;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+    .container {
+      padding: 0 50px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: rgb(5, 38, 91);
+      color: #eee;
+      padding: 15px 40px;
+    }
+
+    .search-input {
+      border-radius: 20px;
+      padding: 5px 10px;
+      border: none;
+      margin-right: 10px;
+    }
+
+    h1+div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+
+    button,
+    .profile-link a {
+      border: none;
+      padding: 5px 10px;
+      border-radius: 15px;
+      background-color: #eee;
+      color: rgb(5, 38, 91);
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    button:hover,
+    .profile-link a:hover {
+      background-color: #b8b8b8;
+    }
+
+    img {
+      max-width: 250px;
+    }
+
+    #search-form {
+      text-align: right;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    #search-result {
+      display: none;
+    }
+
+    #movie-data {
+      padding: 30px;
+      display: inline-flex;
+      gap: 20px;
+      width: 100%;
+    }
+
+    .play-button {
+      font-size: 20px;
+      padding: 10px 20px;
+      border-radius: 100vw;
+    }
+
+    #movie-details {
+      display: inline-block;
+      flex: 1 1 100%;
+    }
+
+    #search-term {
+      font-style: italic;
+    }
+
+    fieldset {
+      border: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    textarea {
+      padding: 20px;
+      background-color: transparent;
+      border: 1px #eee solid;
+      border-radius: 20px;
+      min-height: 80px;
+      color: #eee;
+    }
+
+    .session-link {
+      color: rgb(17, 103, 242);
+      text-decoration: none;
+    }
+
+    .review {
+      background-color: rgb(77, 77, 77);
+      padding: 30px;
+      border-radius: 20px;
+      margin-bottom: 15px;
+    }
+
+    h2 {
+      margin-top: 50px;
+    }
+  </style>
+
+  <script src="js/search.js"></script>
+</head>
+
+<body>
+  <header>
+    <h1>Онлайн кинотеатр</h1>
+    <div>
+      <% if (isValidSession) { %>
+        <div class="profile-link">
+          <a href="/user">Ваш профил</a>
+        </div>
+        <% } %>
+          <form id="search-form" onsubmit="return search()">
+            <input id="keyword" type="text" class="search-input" placeholder="Найти фильм" />
+            <button type="submit">Искать</button>
+          </form>
+    </div>
+  </header>
+
+  <div class="container">
+    <section id="search-result">
+      <p id="search-term">Идет поиск...</p>
+      <p>Ждем ответа от сервера...</p>
+    </section>
+
+    <section id="movie-data">
+      <img id="playbill" src="images/poster.webp" />
+      <div id="movie-details">
+        <b>Название:</b> По щучьему велению<br />
+        <b>Год выхода:</b> 2023<br />
+        <b>Режиссер:</b> Александр Войтинский<br />
+        <b>Актеры:</b> Никита Кологривый
+        Мила Ершова, Алина Алексеева, Юрий Колокольников, Роман Мадянов, Фёдор Лавров, Агриппина Стеклова, Сергей
+        Бурунов,
+        Тимофей Меренков, Валерия Рустамова
+        <br />
+        <b>Продолжительность:</b> 155 мин<br />
+        <br />
+        <b>Описание:</b>
+        <p>Если ты идешь на рыбалку — будь готов к тому, что вытянешь рыбу своей мечты, волшебную Щуку, которая может
+          исполнить три любых твоих желания. Только Емеля спустил два желания на ветер, а третье решил приберечь.
+          Поэтому,
+          чтобы добиться руки царской дочери Анфисы, придется ему действовать без волшебной силы, самому. А помогать ему
+          будет Щука, которая без своей шкурки предстает обычной девушкой Василисой. Вместе им предстоит найти
+          скатерть-самобранку, встретиться с Котом Баюном, отправиться в мрачное царство Кощея и понять, что настоящее
+          чудо — это быть с тем, кого любишь.</p>
+        <button class="play-button" type="submit">Начать просмотр</button>
+      </div>
+    </section>
+
+    <section id="comments">
+      <form method="post" action="reviews">
+        <fieldset>
+          <textarea name="newReview" placeholder="Оставить комментарий"></textarea>
+          <% if (!isValidSession) { %>
+            <div>Нужна <a class="session-link" href="session/new"">авторизация</a> чтобы оставить коментарий.</div>
+          <% } %>
+        </fieldset>
+        <fieldset>
+          <button type=" submit">Отправить</button>
+        </fieldset>
+      </form>
+      <h2>Комментарии</h2>
+      <dl>
+        <% reviews.forEach(review=> {%>
+          <div class="review">
+            <dt>
+              <%= username %>
+            </dt>
+            <dd>
+              <%= review %>
+            </dd>
+          </div>
+          <% }); %>
+      </dl>
+    </section>
+  </div>
+  <script src="js/search.js"></script>
+</body>
+
+</html>

